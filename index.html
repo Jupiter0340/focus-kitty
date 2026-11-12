@@ -1,0 +1,193 @@
+<!doctype html>
+<html lang="zh-CN">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="theme-color" content="#f7f2e8"><meta name="description" content="让一只像素小猫陪你专注。离线可用，自动存档，慢慢把时间养成陪伴。"><title>专注养小猫 · Focus Kitty</title><link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cpath fill='%23b56544' d='M4 4h8v4h8V4h8v24H4z'/%3E%3Cpath fill='%23fff4dc' d='M8 14h4v4H8zm12 0h4v4h-4zm-8 8h8v3h-8z'/%3E%3C/svg%3E"><style>:root{--ground:#f7f2e8;--surface:#fffcf5;--ink:#483d32;--muted:#786653;--accent:#a85236;--soft:#ede4d4;--line:#ddd1bf;--sage:#5d6b45;--font:"Microsoft YaHei","PingFang SC",system-ui,sans-serif}*{box-sizing:border-box}body{margin:0;background:var(--ground);color:var(--ink);font:14px/1.7 var(--font)}button,input{font:inherit;color:inherit}button,a{-webkit-tap-highlight-color:transparent}button{cursor:pointer}button:focus-visible,a:focus-visible,input:focus-visible{outline:3px solid var(--sage);outline-offset:4px}button:disabled{cursor:default;color:var(--muted)}[hidden]{display:none!important}button{border-radius:5px}a{color:inherit;text-decoration:none}.app{max-width:1200px;margin:auto;padding:0 48px}.topbar{height:108px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--line)}.brand{display:flex;align-items:center;gap:12px;font-size:18px;font-weight:700}.brand svg{width:38px;height:38px;color:var(--accent);image-rendering:pixelated}.brand small{display:block;font-size:10px;letter-spacing:2px;font-weight:400;color:var(--muted);line-height:1.4;margin-top:1px}.utilities{display:flex;gap:22px}.quiet{border:0;background:none;font-size:13px;padding:10px 0;color:var(--muted)}.quiet:hover{color:var(--accent)}.intro{display:flex;justify-content:space-between;align-items:end;padding:38px 0 28px}h1{font-size:28px;letter-spacing:1px;margin:0 0 8px;font-weight:600}p{margin:0}.intro p{color:var(--muted);font-size:14px}.room-number{font-size:12px;color:var(--muted);padding-bottom:3px;white-space:nowrap}.room-number span{padding:0 8px;color:var(--line)}/* 1104px canvas = 670px scene + 24px gutter + 410px timer; below, shared column edges. */.workspace{display:grid;grid-template-columns:minmax(0,1.64fr) minmax(320px,1fr);gap:24px}.room-panel{background:#efe6d5;border:1px solid var(--line);border-radius:8px;overflow:hidden;display:flex;flex-direction:column}.room-caption{padding:16px 20px;display:flex;justify-content:space-between;align-items:center;gap:12px;font-size:11px;color:var(--muted)}.room-caption>span:first-child{display:flex;gap:8px;align-items:center;color:var(--ink);font-size:12px}.status-dot{width:6px;height:6px;display:inline-block;background:var(--sage)}.scene{position:relative;flex:1;display:flex;align-items:end;background:#efe2cb;overflow:hidden}.room-button{width:100%;display:block;border:0;padding:0;background:none;line-height:0;border-radius:0}.room-button canvas{width:100%;height:auto;display:block;image-rendering:pixelated}.speech{position:absolute;left:50%;transform:translateX(-50%);top:6%;font-size:12px;background:var(--surface);padding:10px 18px;border:1px solid #c9b79d;max-width:85%;width:max-content;line-height:1.6;z-index:1;border-radius:3px;pointer-events:none}.speech:after{content:"";position:absolute;bottom:-6px;left:50%;width:10px;height:10px;background:var(--surface);border-right:1px solid #c9b79d;border-bottom:1px solid #c9b79d;transform:rotate(45deg)}.pet-hint{position:absolute;bottom:12px;left:20px;font-size:11px;color:#67543e;pointer-events:none}.room-footer{padding:14px 20px;display:flex;justify-content:space-between;font-size:12px;color:var(--muted);background:#f1e8d9}.room-footer>span:last-child{color:var(--accent)}.timer-panel{border:1px solid var(--line);border-radius:8px;background:var(--surface);padding:25px 28px;display:flex;flex-direction:column}.section-title{display:flex;justify-content:space-between;align-items:center;gap:12px}h2{font-size:16px;font-weight:600;line-height:1.5;margin:0}.tiny-star{color:var(--accent);font-size:24px}.timer-description{color:var(--muted);font-size:12px;margin-top:5px}.clock-wrap{text-align:center;padding:24px 0 20px}.clock-wrap>span{font-size:11px;color:var(--muted)}#clock{font:400 clamp(48px,5vw,64px)/1.35 "Consolas","Courier New",monospace;font-variant-numeric:tabular-nums;letter-spacing:-3px}.timer-track{height:4px;background:var(--soft);margin:12px auto 0;max-width:200px}.timer-track>div{height:100%;width:0;background:var(--sage)}fieldset{margin:0;padding:0;border:0;min-width:0}legend{font-size:12px;margin-bottom:10px;padding:0}.presets{display:flex;gap:8px}.presets button{flex:1;border:1px solid var(--line);background:transparent;padding:9px 0;font-size:12px;white-space:nowrap}.presets .selected{border-color:var(--accent);color:var(--accent);background:#f7eade}.presets button:hover:enabled{border-color:var(--accent)}.custom{display:flex;align-items:center;justify-content:space-between;margin-top:14px;color:var(--muted);font-size:12px}.custom input{width:62px;padding:4px 5px;text-align:center;border:1px solid var(--line);background:var(--surface);border-radius:3px;font-variant-numeric:tabular-nums;margin-right:4px}.error{min-height:20px;font-size:11px;color:#a03026;margin-top:4px}.primary{background:var(--accent);color:var(--surface);border:1px solid var(--accent);padding:12px 18px;font-size:14px;font-weight:600;min-height:46px}.primary:hover{background:#8f432c}.primary:active{transform:translateY(1px)}#start{width:100%;margin-top:2px}#start span{font-size:11px;margin-right:8px}.stop{border:1px solid var(--line);background:transparent;padding:11px;min-height:46px;margin-top:2px}.stop:hover{border-color:var(--accent);color:var(--accent)}.reward{text-align:center;font-size:11px;color:var(--muted);margin-top:14px}.reward strong{font-weight:500;color:var(--accent)}.save-note{font-size:10px;text-align:center;margin-top:8px;color:var(--muted)}.cat-panel{padding:24px 26px;background:#ede8db;border-radius:8px}.cat-name{display:flex;justify-content:space-between;align-items:center}.eyebrow{font-size:11px;color:var(--muted)}.cat-name h2{font-size:21px;margin-top:4px}.cat-name h2 span{font:12px "Consolas",monospace;margin-left:8px;color:var(--sage);background:#dde1cd;padding:5px 9px;border-radius:3px}.cat-name p{font-size:12px;color:var(--muted);margin-top:4px}.paw{width:45px;height:45px;color:#b2a184;margin-right:4px}.xp-label{display:flex;justify-content:space-between;font-size:11px;color:var(--muted);margin-top:20px}.xp-label span:last-child{font-family:"Consolas",monospace}.xp-track{height:8px;background:#d9d4c3;margin-top:8px;overflow:hidden;border-radius:1px}.xp-track>div{height:100%;width:0;background:var(--sage);transition:width .4s}.stats{display:grid;grid-template-columns:repeat(3,1fr);margin-top:22px}.stats>div+div{padding-left:22px;border-left:1px solid #d5cbbb}.stats span{font-size:11px;color:var(--muted)}.stats p{font-size:11px;color:var(--muted);margin-top:2px}.stats strong{font:400 23px "Consolas",monospace;color:var(--ink);margin-right:3px}.journal{padding:24px 28px;border-top:1px solid var(--line)}.journal h2{font-size:14px}.journal .section-title>span{color:var(--muted)}.empty{font-size:13px;margin-top:30px;line-height:2.2}.empty span{font-size:12px;color:var(--muted)}.history-row{display:flex;justify-content:space-between;gap:12px;padding:13px 0;border-bottom:1px solid var(--line);font-size:12px}.history-row small{color:var(--muted);font-size:11px}.history-row strong{font-weight:500;color:var(--sage);white-space:nowrap}.bottom-note{display:flex;align-items:center;justify-content:center;gap:12px;margin:28px 0 30px;font-size:12px;color:var(--muted)}.bottom-note>span{font-size:22px;color:var(--accent)}footer{border-top:1px solid var(--line);padding:20px 0 25px;display:flex;justify-content:space-between;font-size:10px;color:var(--muted)}dialog{width:min(440px,calc(100% - 32px));padding:36px 30px 28px;background:var(--surface);color:var(--ink);border:2px solid #b9a080;border-radius:8px;text-align:center}dialog::backdrop{background:rgba(52,41,28,.35)}.close{position:absolute;right:10px;top:6px;border:0;background:none;font-size:25px;min-width:36px;min-height:36px;color:var(--muted)}.modal-art{font-size:38px;color:var(--accent);line-height:1;margin-bottom:18px}dialog h2{font-size:22px;margin-bottom:16px}#modalBody{font-size:14px;color:var(--muted);line-height:1.9}#modalBody p+p{margin-top:10px}.modal-actions{display:flex;flex-direction:column;gap:10px;margin-top:25px}.secondary{border:1px solid var(--line);padding:11px;background:none}.toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%);background:var(--ink);color:var(--surface);padding:12px 20px;border-radius:5px;max-width:90vw;z-index:5;font-size:12px}.running .status-dot{animation:breathe 2s steps(2) infinite}.running .scene{background:#efe2cb}@keyframes breathe{50%{opacity:.4}}@media(min-width:1400px){.app{padding:0 48px}.intro{padding-top:44px}}@media(max-width:950px){.app{padding:0 26px}.workspace{grid-template-columns:minmax(0,1.3fr) minmax(290px,1fr);gap:18px}.timer-panel{padding:22px}.room-caption>span:last-child{display:none}.room-number{display:none}.scene{align-items:center}.stats>div+div{padding-left:12px}}@media(max-width:720px){.app{padding:0 18px}.topbar{height:82px}.brand{font-size:16px;gap:8px}.brand svg{width:30px;height:30px}.brand small{font-size:9px}.utilities{gap:16px}.quiet{font-size:12px}.intro{padding:26px 0 22px}h1{font-size:23px;letter-spacing:0}.intro p{font-size:12px;max-width:300px}.workspace{grid-template-columns:1fr;gap:18px}.room-panel{grid-row:1}.timer-panel{grid-row:2;padding:24px}.cat-panel{grid-row:3}.journal{grid-row:4;padding:20px 8px}.scene{align-items:end}.room-caption{padding:12px 16px}.room-caption>span:last-child{display:block;font-size:10px}.speech{font-size:11px;top:5%;padding:7px 12px}.pet-hint{font-size:10px;bottom:8px;left:14px}.room-footer{padding:12px 16px}.clock-wrap{padding:18px 0}#clock{font-size:64px}.presets button{min-height:44px}.custom input{height:38px;width:80px}.save-note{font-size:11px}.bottom-note{align-items:start;gap:8px;margin:18px 0 24px}.bottom-note p{max-width:280px;font-size:11px}footer{font-size:10px;gap:15px}footer>span:last-child{max-width:130px;text-align:right}.empty{margin-top:18px}}@media(prefers-reduced-motion:reduce){*,*:before,*:after{animation:none!important;transition:none!important}}
+:root{--muted:#71604d;--sage:#56623e}.brand small,.save-note,footer{font-size:11px}.journal{align-self:start}.spark{width:20px;height:20px;vertical-align:middle;display:inline-block;fill:none;stroke:currentColor;stroke-width:1.4}.modal-art .spark{width:40px;height:40px}@media(max-width:720px){.brand small{font-size:11px;letter-spacing:1px}.room-caption>span:last-child{font-size:11px}.pet-hint{font-size:11px}footer{font-size:11px}.utilities{gap:12px}.quiet{font-size:11px;min-height:44px}}
+</style></head>
+<body>
+<div class="app">
+  <header class="topbar"><a class="brand" href="./" aria-label="专注养小猫首页"><svg viewBox="0 0 32 32" aria-hidden="true"><path d="M4 4h8v4h8V4h8v24H4z" fill="currentColor"/><path d="M8 14h4v4H8zm12 0h4v4h-4zm-8 8h8v3h-8z" fill="#fff4dc"/></svg><span>专注养小猫<small>FOCUS KITTY</small></span></a><div class="utilities"><button id="sound" class="quiet" aria-pressed="false">音效：关</button><button id="help" class="quiet">玩法说明 <span aria-hidden="true">↗</span></button></div></header>
+  <main>
+    <div class="intro"><div><h1>把时间，慢慢养成陪伴。</h1><p>你负责专注，糯米负责陪你。一起把今天过得好一点。</p></div><span class="room-number">糯米的小屋 <span aria-hidden="true"> / </span> 001</span></div>
+    <div class="workspace">
+      <section class="room-panel" aria-label="糯米的像素小屋"><div class="room-caption"><span><i class="status-dot"></i><span id="roomStatus">小猫已就位</span></span><span>阳光正好，适合做点喜欢的事</span></div><div class="scene"><div class="speech" id="speech" role="status">先摸摸我，再一起开工吧。</div><button id="pet" aria-label="摸摸糯米小猫" class="room-button"><canvas id="room" width="576" height="360" aria-label="温暖的像素小屋，糯米小猫坐在地毯上"></canvas></button><span class="pet-hint">点一下小猫，给它一点爱</span></div><div class="room-footer"><span id="mood">糯米今天也想陪着你</span><span aria-hidden="true"><svg class="spark" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2 15 9 22 12 15 15 12 22 9 15 2 12 9 9Z"/></svg></span></div></section>
+      <section class="timer-panel" aria-labelledby="timerHeading"><div class="section-title"><h2 id="timerHeading">留一段时间，给自己</h2><span class="tiny-star" aria-hidden="true"><svg class="spark" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2 15 9 22 12 15 15 12 22 9 15 2 12 9 9Z"/></svg></span></div><p class="timer-description" id="timerDescription">从一小段专注开始就很好。</p><div class="clock-wrap"><span id="timerState">准备好就出发</span><div id="clock" role="timer" aria-label="剩余时间">25:00</div><div class="timer-track" role="progressbar" aria-label="本次专注进度" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><div id="timerFill"></div></div></div><fieldset id="durationControls"><legend>这次想专注多久？</legend><div class="presets"><button data-minutes="15" aria-pressed="false">15 分钟</button><button data-minutes="25" aria-pressed="true" class="selected">25 分钟</button><button data-minutes="45" aria-pressed="false">45 分钟</button></div><label class="custom">自定义时长 <span><input id="minutes" type="number" min="1" max="180" step="1" value="25" inputmode="numeric" aria-describedby="durationError"> 分钟</span></label></fieldset><p id="durationError" class="error" role="alert"></p><button id="start" class="primary"><span aria-hidden="true">▶</span> 开始专注</button><button id="stop" class="stop" hidden>提前结束</button><p class="reward" id="reward">完成这次专注，糯米将获得 <strong>50 XP</strong></p><p class="save-note" id="saveNote">进度自动保存在此浏览器</p></section>
+      <section class="cat-panel" aria-labelledby="catHeading"><div class="cat-name"><div><span class="eyebrow">你的小伙伴</span><h2 id="catHeading">糯米 <span id="level">Lv. 1</span></h2><p id="catTitle">初来乍到的小团子</p></div><svg viewBox="0 0 40 40" class="paw" aria-hidden="true"><g fill="currentColor"><rect x="5" y="8" width="7" height="9"/><rect x="16" y="3" width="7" height="10"/><rect x="27" y="8" width="7" height="9"/><path d="M12 21h16v5h5v9H7v-9h5z"/></g></svg></div><div class="xp-label"><span>成长进度</span><span id="xpLabel">0 / 100 XP</span></div><div class="xp-track" role="progressbar" aria-label="小猫升级进度" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><div id="xpFill"></div></div><div class="stats"><div><span>累计陪伴</span><p><strong id="totalMinutes">0</strong> 分钟</p></div><div><span>完成专注</span><p><strong id="sessions">0</strong> 次</p></div><div><span>下一次升级</span><p><strong id="nextXP">100</strong> XP</p></div></div></section>
+      <section class="journal" aria-labelledby="journalHeading"><div class="section-title"><h2 id="journalHeading">小小的专注足迹</h2><span aria-hidden="true">↗</span></div><div id="history"><p class="empty">第一段陪伴，还在等你开始。<br><span>每一次认真，都值得被记住。</span></p></div></section>
+    </div>
+    <aside class="bottom-note"><span aria-hidden="true"><svg class="spark" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2 15 9 22 12 15 15 12 22 9 15 2 12 9 9Z"/></svg></span><p>不用一下子变得很厉害。今天比昨天多专注一点，也很好。</p></aside>
+  </main>
+  <footer><span>一人，一猫，一点点进步。</span><span>Made for your quiet moments.</span></footer>
+</div>
+<dialog id="modal"><button id="closeModal" class="close" aria-label="关闭弹窗">×</button><div class="modal-art" aria-hidden="true"><svg class="spark" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2 15 9 22 12 15 15 12 22 9 15 2 12 9 9Z"/></svg></div><h2 id="modalTitle"></h2><div id="modalBody"></div><div class="modal-actions"><button id="modalSecondary" class="secondary" hidden>再陪它一会儿</button><button id="modalPrimary" class="primary">好，继续慢慢来</button></div></dialog>
+<div id="toast" class="toast" role="status" hidden></div>
+<noscript>请启用浏览器 JavaScript，让糯米陪你专注。</noscript>
+<script>var KittyState = (() => {
+  const fresh = () => ({ version: 1, xp: 0, totalMinutes: 0, sessions: 0, selected: 25, sound: false, history: [], session: null, notice: null });
+  const validMinutes = n => Number.isInteger(n) && n >= 1 && n <= 180;
+  function restore(raw) {
+    try {
+      const s = JSON.parse(raw);
+      if (!s || s.version !== 1) return fresh();
+      const result = fresh();
+      for (const key of ['xp', 'totalMinutes', 'sessions']) if (Number.isSafeInteger(s[key]) && s[key] >= 0) result[key] = s[key];
+      if (validMinutes(s.selected)) result.selected = s.selected;
+      result.sound = s.sound === true;
+      result.history = Array.isArray(s.history) ? s.history.filter(h => h && validMinutes(h.minutes) && Number.isFinite(h.at)).slice(0, 20) : [];
+      const a = s.session;
+      if (a && validMinutes(a.minutes) && Number.isFinite(a.start) && a.end === a.start + a.minutes * 60000) result.session = { minutes: a.minutes, start: a.start, end: a.end };
+      if (s.notice && ['complete', 'cancel'].includes(s.notice.type)) result.notice = s.notice;
+      return result;
+    } catch { return fresh(); }
+  }
+  function level(xp) {
+    let n = 1, progress = xp;
+    while (progress >= n * 100) { progress -= n * 100; n++; }
+    return { level: n, progress, needed: n * 100 };
+  }
+  function start(s, minutes, now) {
+    if (!validMinutes(minutes)) throw new Error('请输入 1–180 之间的整数分钟。');
+    if (s.session) return s;
+    return { ...s, selected: minutes, notice: null, session: { minutes, start: now, end: now + minutes * 60000 } };
+  }
+  const remaining = (s, now) => s.session ? Math.max(0, s.session.end - now) : s.selected * 60000;
+  function tick(s, now) {
+    if (!s.session || now < s.session.end) return s;
+    const minutes = s.session.minutes, reward = minutes * 2;
+    return { ...s, xp: s.xp + reward, totalMinutes: s.totalMinutes + minutes, sessions: s.sessions + 1, session: null,
+      history: [{ minutes, at: s.session.end }, ...s.history].slice(0, 20),
+      notice: { type: 'complete', minutes, reward, upgraded: level(s.xp + reward).level > level(s.xp).level } };
+  }
+  function cancel(s, now) {
+    const settled = tick(s, now);
+    if (settled !== s || !s.session) return settled;
+    return { ...s, session: null, notice: { type: 'cancel' } };
+  }
+  return { fresh, restore, level, start, remaining, tick, cancel };
+})();
+
+var KittyRoom = (() => {
+  let canvas, ctx, running = false, happyUntil = 0, previous = 0;
+  const reduced = window.matchMedia('(prefers-reduced-motion: reduce)');
+  const C = { wall: '#eee0c5', line: '#b49a76', wood: '#a77b53', dark: '#76563e', pale: '#f9efd9', sage: '#7e8b5a', leaf: '#586d45', sky: '#b9d0c1', cat: '#e2a45d', fur: '#f7dca6', outline: '#73523b' };
+  function rect(x,y,w,h,c){ctx.fillStyle=c;ctx.fillRect(x,y,w,h);}
+  function pot(x,y,scale=1){ctx.save();ctx.translate(x,y);ctx.scale(scale,scale);rect(8,-33,4,38,C.leaf);rect(-3,-29,13,7,C.sage);rect(-7,-35,11,6,C.sage);rect(11,-43,14,7,C.leaf);rect(19,-49,9,6,C.leaf);rect(12,-16,14,6,C.sage);rect(0,0,24,5,C.dark);rect(2,5,20,22,'#ba7957');rect(6,27,12,4,C.dark);rect(4,6,4,17,'#d69a71');ctx.restore();}
+  function book(x,y,w,h,c){rect(x,y,w,h,c);rect(x+2,y+3,w-4,2,'#ecdcbb');rect(x+2,y+h-5,w-4,2,'#ecdcbb');}
+  function cat(x,y,t){
+    const happy = Date.now() < happyUntil;
+    const breath = reduced.matches ? 0 : Math.floor(t/900)%2;
+    ctx.save();ctx.translate(x,y-breath);ctx.scale(3,3);
+    // Pixel sprite: solid, hand-placed blocks, including a tail that flicks.
+    const wag = !reduced.matches && Math.floor(t/750)%2 ? 2 : 0;
+    rect(29,24,12,5,C.outline);rect(38,15-wag,5,12+wag,C.outline);rect(39,16-wag,3,9+wag,C.cat);rect(28,25,11,3,C.cat);
+    rect(5,15,25,17,C.outline);rect(3,17,29,11,C.outline);rect(5,16,25,13,C.cat);rect(8,28,20,3,C.cat);rect(8,21,14,8,C.fur);
+    rect(3,0,7,13,C.outline);rect(23,0,7,13,C.outline);rect(6,2,3,8,C.cat);rect(24,2,3,8,C.cat);rect(6,5,3,4,'#d58b74');rect(24,5,3,4,'#d58b74');
+    rect(6,6,22,16,C.outline);rect(2,10,30,9,C.outline);rect(4,10,26,9,C.cat);rect(7,7,20,13,C.cat);rect(9,15,16,6,C.fur);
+    rect(14,7,3,5,'#bd7e42');rect(19,7,2,4,'#bd7e42');
+    const blink = happy || (!reduced.matches && Math.floor(t/150)%38===0);
+    rect(8,12,4,blink?1:3,C.outline);rect(23,12,4,blink?1:3,C.outline);rect(16,16,3,2,'#b16d5c');rect(17,18,1,2,C.outline);
+    rect(3,16,4,1,'#b77950');rect(27,16,5,1,'#b77950');rect(7,29,7,3,C.fur);rect(23,29,7,3,C.fur);
+    if(happy){const heart=(hx,hy)=>{rect(hx+2,hy,3,2,'#b96e58');rect(hx+7,hy,3,2,'#b96e58');rect(hx,hy+2,12,4,'#b96e58');rect(hx+2,hy+6,8,2,'#b96e58');rect(hx+4,hy+8,4,2,'#b96e58');};heart(-9,-13);heart(34,-7);}
+    ctx.restore();
+  }
+  function draw(t){
+    ctx.imageSmoothingEnabled=false;
+    rect(0,0,576,360,C.wall);
+    // Wallpaper vertical stitches and wainscoting.
+    for(let x=14;x<576;x+=32){for(let y=14;y<246;y+=32){rect(x,y,2,3,'#dfcfaf');rect(x-1,y+1,4,1,'#dfcfaf');}}
+    rect(0,248,576,7,C.wood);rect(0,255,576,105,'#d5b58b');rect(0,255,576,4,'#b68d63');
+    for(let y=280;y<360;y+=27){rect(0,y,576,2,'#bc986e');for(let x=(y%2?20:72);x<576;x+=112)rect(x,y-24,2,24,'#c39f75');}
+    // Large recessed window and view across the hills.
+    rect(55,49,192,153,C.dark);rect(61,55,180,139,C.wood);rect(69,62,164,124,C.sky);
+    rect(181,73,22,22,'#f7e6ac');rect(177,77,30,14,'#f7e6ac');
+    rect(81,87,32,8,'#eef0d6');rect(89,82,17,5,'#eef0d6');rect(105,91,19,5,'#eef0d6');
+    rect(70,145,32,41,'#9fae83');rect(102,137,39,49,'#9fae83');rect(141,151,40,35,'#9fae83');rect(181,139,52,47,'#9fae83');rect(70,168,163,18,'#788d65');
+    rect(148,60,7,130,C.wood);rect(69,122,164,6,C.wood);rect(55,194,194,8,C.dark);rect(49,201,205,8,C.wood);rect(49,201,205,3,'#c39669');
+    // Curtains and warm light on the floor.
+    rect(44,42,217,5,C.dark);rect(48,47,24,100,'#e4c49c');rect(51,47,5,100,'#d8b187');rect(62,47,5,100,'#eed3ae');rect(232,47,24,100,'#e4c49c');rect(235,47,5,100,'#d8b187');rect(246,47,5,100,'#eed3ae');rect(48,144,24,6,'#b98b63');rect(232,144,24,6,'#b98b63');
+    rect(84,263,116,20,'#e5c99b');rect(70,283,155,20,'#e5c99b');rect(55,303,190,16,'#e5c99b');rect(132,263,5,56,'#d5b58b');
+    // Shelf, books, framed paw print and a trailing plant.
+    rect(348,85,167,7,C.dark);rect(348,79,167,7,C.wood);rect(359,92,5,16,C.wood);rect(499,92,5,16,C.wood);
+    book(364,44,12,35,'#859070');book(379,38,11,41,'#bc785a');book(393,49,14,30,'#d2b17b');rect(420,45,33,34,C.dark);rect(424,49,25,26,C.pale);rect(432,55,3,4,'#bc8e60');rect(439,55,3,4,'#bc8e60');rect(432,62,10,7,'#bc8e60');
+    pot(474,51,.8);rect(504,87,5,34,C.leaf);rect(508,107,9,5,C.sage);rect(500,97,8,5,C.sage);rect(503,121,4,10,C.leaf);
+    // Small desk with book, steaming tea, a little lamp and wooden stool.
+    rect(322,190,207,11,C.dark);rect(316,181,219,11,C.wood);rect(316,181,219,3,'#c49a70');rect(333,201,10,74,C.dark);rect(510,201,10,74,C.dark);rect(344,205,165,31,'#bb9067');rect(350,211,153,18,'#cda47a');rect(416,216,20,4,C.dark);
+    rect(368,171,53,8,'#a87350');rect(370,168,22,6,C.pale);rect(395,169,24,5,'#ede0bf');rect(393,168,2,9,C.dark);
+    rect(436,164,17,17,'#ede2be');rect(453,167,7,10,C.dark);rect(453,169,4,6,C.wall);rect(436,178,18,3,'#c3a477');
+    if(!reduced.matches){let steam=Math.floor(t/500)%3;rect(442,153-steam*2,2,6,'#c7bba4');rect(447,150-steam,2,5,'#c7bba4');}
+    rect(486,140,4,37,C.dark);rect(477,176,22,5,C.dark);rect(478,122,20,8,'#7f8c60');rect(473,130,30,12,'#7f8c60');rect(470,142,36,4,C.dark);
+    rect(443,264,48,8,C.dark);rect(446,260,42,7,'#ba8e61');rect(450,272,6,35,C.dark);rect(480,272,6,35,C.dark);rect(453,292,30,4,C.wood);
+    // Tall plant and basket.
+    pot(32,248,1.8);rect(20,307,58,5,'#be986a');rect(24,312,50,25,'#b58d60');for(let x=27;x<72;x+=9)rect(x,313,2,22,'#ceb083');
+    // Pixel rug and cushion, shadow, cat.
+    rect(215,282,179,8,'#b98b69');rect(196,290,218,30,'#b98b69');rect(210,320,190,10,'#b98b69');rect(223,330,163,5,'#b98b69');rect(215,291,179,29,'#cfaa82');rect(228,284,151,7,'#cfaa82');rect(226,320,157,7,'#cfaa82');
+    rect(263,294,97,8,'#8b8b61');rect(254,301,116,16,'#8b8b61');rect(263,317,98,5,'#8b8b61');rect(260,299,104,13,'#a4a47a');
+    cat(267,207,t);
+    // Tiny yarn ball and framed wall note.
+    rect(174,283,19,16,'#b87459');rect(170,287,27,9,'#b87459');rect(175,285,3,12,'#d69879');rect(182,283,2,16,'#d69879');rect(192,294,20,2,'#b87459');rect(209,291,2,5,'#b87459');
+    rect(277,101,40,46,'#a77952');rect(281,105,32,38,C.pale);rect(289,114,16,2,'#c5b48c');rect(286,121,20,2,'#c5b48c');rect(291,129,10,5,'#a5aa7c');
+    if(running){ctx.fillStyle=C.dark;ctx.font='11px monospace';ctx.fillText('z',380,205);ctx.fillText('z',390,192);}
+  }
+  function loop(t){if(t-previous>120){draw(t);previous=t;}requestAnimationFrame(loop);}
+  return { init(el){canvas=el;ctx=canvas.getContext('2d');draw(0);requestAnimationFrame(loop);},setRunning(value){running=value;},pet(){happyUntil=Date.now()+2200;} };
+})();
+
+(() => {
+  'use strict';
+  const $ = id => document.getElementById(id), KEY = 'focus-kitty-v1';
+  let state, stored = true, audio, modalAction = null, toastTimer, petTimer, lastNotice = null;
+  try { state = KittyState.restore(localStorage.getItem(KEY)); } catch { state = KittyState.fresh(); stored = false; }
+  const roasts = ['我的罐头还没热，你的专注就凉了？', '说好一起努力，你却先下班了。那我也躺平三秒。', '你这专注时长，比我追自己尾巴还短。', '我已经把键盘让给你了，你居然不用？', '行吧，批准你去休息。回来记得带上毅力和小鱼干。'];
+  const pets = ['摸摸收到！今天也会好好陪你。', '呼噜呼噜……再摸一下也不是不行。', '小鱼干可以晚点，摸摸不能少。', '别光顾着吸猫啦，我陪你做点正事。'];
+  function save(){try{localStorage.setItem(KEY,JSON.stringify(state));stored=true;}catch{stored=false;}$('saveNote').textContent=stored?'进度自动保存在此浏览器':'无法保存进度，请检查浏览器存储权限';}
+  function toast(text){$('toast').textContent=text;$('toast').hidden=false;clearTimeout(toastTimer);toastTimer=setTimeout(()=>$('toast').hidden=true,3000);}
+  function enableAudio(){try{audio ||= new (window.AudioContext || window.webkitAudioContext)();if(audio.state==='suspended')audio.resume().catch(()=>{});}catch{toast('此浏览器暂不支持音效。');}}
+  function chime(kind){if(!state.sound)return;enableAudio();if(!audio)return;const notes=kind==='complete'?[523.25,659.25,783.99,1046.5]:kind==='cancel'?[392,329.63]:[659.25,783.99];try{notes.forEach((n,i)=>{const oscillator=audio.createOscillator(),gain=audio.createGain(),at=audio.currentTime+i*.14;oscillator.type='triangle';oscillator.frequency.value=n;gain.gain.setValueAtTime(0,at);gain.gain.linearRampToValueAtTime(.075,at+.015);gain.gain.exponentialRampToValueAtTime(.001,at+.24);oscillator.connect(gain);gain.connect(audio.destination);oscillator.start(at);oscillator.stop(at+.25);});}catch{}}
+  function modal(title,html,primary='好，继续慢慢来',action=null,secondary=false){
+    modalAction=action;$('modalTitle').textContent=title;$('modalBody').innerHTML=html;$('modalPrimary').textContent=primary;$('modalSecondary').hidden=!secondary;
+    if(!$('modal').open)$('modal').showModal();
+  }
+  function close(){ $('modal').close();modalAction=null; }
+  $('closeModal').onclick=close;$('modalSecondary').onclick=close;
+  $('modalPrimary').onclick=()=>{const action=modalAction;close();if(action)action();};
+  $('modal').addEventListener('click',event=>{if(event.target===$('modal')){const r=$('modal').getBoundingClientRect();if(event.clientX<r.left||event.clientX>r.right||event.clientY<r.top||event.clientY>r.bottom)close();}});
+  function notice(){if(!state.notice||state.notice===lastNotice)return;lastNotice=state.notice;const n=state.notice;
+    if(n.type==='complete'){
+      KittyRoom.pet();$('speech').textContent='你认真做事的样子，值得一大声呼噜。';
+      modal(n.upgraded?'糯米升级啦！':'这一段专注，做得真好。',`<p>你和糯米一起度过了 <strong>${Number(n.minutes)||0} 分钟</strong>。</p><p>获得 <strong>+${Number(n.reward)||0} XP</strong>${n.upgraded?'，糯米又长大了一点。':'，每一点认真都算数。'}</p><p>现在伸个懒腰，喝口水吧。</p>`);
+    } else {const line=roasts[Math.floor(Math.random()*roasts.length)];$('speech').textContent=line;modal('糯米有一点点意见。',`<p>“${line}”</p><p>这次没有获得经验。休息好了，随时再来。</p>`,'好，下次认真');}
+    state={...state,notice:null};save();
+  }
+  function render(){
+    const active=!!state.session,l=KittyState.level(state.xp),remaining=KittyState.remaining(state,Date.now()),seconds=Math.ceil(remaining/1000),clock=`${String(Math.floor(seconds/60)).padStart(2,'0')}:${String(seconds%60).padStart(2,'0')}`;
+    $('clock').textContent=clock;document.title=active?`${clock} · 糯米陪你专注`:'专注养小猫 · Focus Kitty';
+    document.body.classList.toggle('running',active);KittyRoom.setRunning(active);
+    $('start').hidden=active;$('stop').hidden=!active;$('durationControls').disabled=active;
+    $('timerState').textContent=active?'慢慢来，糯米陪着你':'准备好就出发';$('roomStatus').textContent=active?'正在陪你专注':'小猫已就位';
+    $('timerDescription').textContent=active?'先做好眼前这一件小事。':'从一小段专注开始就很好。';
+    $('mood').textContent=active?'嘘，糯米在陪你认真做事':'糯米今天也想陪着你';
+    const fraction=active?Math.min(100,Math.max(0,(1-remaining/(state.session.minutes*60000))*100)):0;
+    $('timerFill').style.width=fraction+'%';$('timerFill').parentElement.setAttribute('aria-valuenow',Math.round(fraction));
+    $('level').textContent=`Lv. ${l.level}`;$('xpLabel').textContent=`${l.progress} / ${l.needed} XP`;$('xpFill').style.width=(l.progress/l.needed*100)+'%';$('xpFill').parentElement.setAttribute('aria-valuemax',l.needed);$('xpFill').parentElement.setAttribute('aria-valuenow',l.progress);
+    $('catTitle').textContent=l.level<2?'初来乍到的小团子':l.level<4?'渐渐默契的小伙伴':l.level<7?'形影不离的老朋友':'专注大师的最佳拍档';
+    $('totalMinutes').textContent=state.totalMinutes;$('sessions').textContent=state.sessions;$('nextXP').textContent=l.needed-l.progress;
+    $('sound').textContent=`音效：${state.sound?'开':'关'}`;$('sound').setAttribute('aria-pressed',state.sound);
+    $('reward').innerHTML=`${active?'完成本次专注':'完成这次专注'}，糯米将获得 <strong>${(state.session?state.session.minutes:state.selected)*2} XP</strong>`;
+    document.querySelectorAll('[data-minutes]').forEach(b=>{const selected=Number(b.dataset.minutes)===state.selected;b.classList.toggle('selected',selected);b.setAttribute('aria-pressed',selected);});
+    const historySignature=JSON.stringify(state.history.slice(0,3));
+    if($('history').dataset.signature!==historySignature){$('history').dataset.signature=historySignature;if(state.history.length){$('history').replaceChildren();state.history.slice(0,3).forEach(h=>{const row=document.createElement('div');row.className='history-row';const description=document.createElement('span'),time=document.createElement('small'),reward=document.createElement('strong');description.textContent=`一起专注了 ${h.minutes} 分钟 `;time.textContent=new Date(h.at).toLocaleString('zh-CN',{month:'numeric',day:'numeric',hour:'2-digit',minute:'2-digit'});description.append(time);reward.textContent=`+${h.minutes*2} XP`;row.append(description,reward);$('history').append(row);});}}
+  }
+  function synchronize(){const next=KittyState.tick(state,Date.now());if(next!==state){state=next;save();chime('complete');}render();notice();}
+  function select(){const input=$('minutes').value,n=Number(input);if(input.trim()===''||!Number.isInteger(n)||n<1||n>180){$('durationError').textContent='请输入 1–180 之间的整数分钟。';return false;}$('durationError').textContent='';state={...state,selected:n};save();render();return true;}
+  document.querySelectorAll('[data-minutes]').forEach(b=>b.onclick=()=>{$('minutes').value=b.dataset.minutes;select();});
+  $('minutes').addEventListener('input',select);
+  $('start').onclick=()=>{if(!select()){$('minutes').focus();return;}if(state.sound)enableAudio();state=KittyState.start(state,state.selected,Date.now());save();$('speech').textContent='你忙你的，我在这里，哪儿也不去。';chime('start');render();};
+  $('stop').onclick=()=>{synchronize();if(!state.session)return;modal('要提前结束这次专注吗？','<p>提前结束不会获得经验。<br>如果你需要休息，糯米也会理解的。</p>','结束这次专注',()=>{state=KittyState.cancel(state,Date.now());save();chime(state.notice?.type==='complete'?'complete':'cancel');render();notice();},true);};
+  $('sound').onclick=()=>{state={...state,sound:!state.sound};if(state.sound){enableAudio();chime('start');}save();render();};
+  $('pet').onclick=()=>{KittyRoom.pet();$('speech').textContent=pets[Math.floor(Math.random()*pets.length)];chime('pet');clearTimeout(petTimer);petTimer=setTimeout(()=>{$('speech').textContent=state.session?'你忙你的，我在这里，哪儿也不去。':'先摸摸我，再一起开工吧。';},5000);};
+  $('help').onclick=()=>modal('和糯米一起，慢慢专注。','<p>① 选择 1–180 分钟，点击「开始专注」。<br>② 完整陪伴一分钟，糯米就获得 2 XP。<br>③ 首次升级需要 100 XP，之后每级递增 100 XP。<br>④ 点击小屋，可以摸摸糯米。</p><p>刷新页面后计时继续；关闭页面后，下次回来会按经过的时间结算。建议专注时保留网页，及时听到完成提示音。</p><p>存档仅在当前浏览器内，不会跨设备同步；清除浏览器数据会丢失进度。音效默认关闭，可随时开启。</p>','知道啦，开始陪伴');
+  document.addEventListener('visibilitychange',()=>{if(!document.hidden)synchronize();});
+  window.addEventListener('storage',event=>{if(event.key===KEY){state=KittyState.restore(event.newValue);$('minutes').value=state.selected;synchronize();}});
+  KittyRoom.init($('room'));$('minutes').value=state.selected;save();synchronize();setInterval(synchronize,500);
+})();
+</script>
+</body></html>

@@ -1,2 +1,41 @@
-# focus-kitty
-专注养小猫 · A cozy pixel-art focus timer with an offline cat companion.
+# 专注养小猫 · Focus Kitty
+
+一人，一猫，一点点进步。一个温暖的像素风专注计时器，糯米在小屋里陪你学习、工作，也陪你慢慢长大。
+
+## 打开试玩
+
+直接用 Chrome、Edge、Firefox 或 Safari 打开根目录的 **index.html**，无需安装、注册或联网。也可通过本仓库的 GitHub Pages 在线访问。
+
+1. 选择 15、25、45 分钟，或自定义 **1–180** 整数分钟。
+2. 点击「开始专注」，糯米会陪你待在像素小屋里。
+3. 完成后每分钟获得 **2 XP**；从 Lv.1 升到 Lv.2 需要 100 XP，此后每级增加 100 XP。
+4. 提前结束会收到糯米的一句吐槽，本次不加经验。
+5. 点一下小屋可以摸摸糯米；右上角可切换合成音效。
+
+进度保存在当前浏览器的 localStorage 中。刷新后自动恢复正在进行的计时；离开页面后，下次打开会按实际经过的时间结算一次。音效需要页面打开且浏览器允许播放时才能发出。清除浏览器数据会删除存档；本地文件和线上站点分别保存，各浏览器和设备不互通。浏览器阻止存储时，页面会显示提示。
+
+## 文件结构与修改
+
+- `index.html`：可独立离线运行的完整网页。
+- `src/template.html`、`src/style.css`：页面与样式。
+- `src/state.js`：纯计时、奖励、升级与存档校验逻辑。
+- `src/room.js`：原创 Canvas 像素小屋与小猫动画。
+- `src/app.js`：交互、本地存档和 Web Audio 音效。
+- `tests/state.test.cjs`：计时恢复、奖励去重、取消、升级及输入校验测试。
+
+开发只需 Node.js，无 npm 依赖：
+
+```sh
+npm test
+npm run build
+```
+
+修改源文件后运行 build，再打开 `index.html`。不要直接修改生成文件。所有插画和音效均由项目代码绘制或合成，不依赖外部字体、图片、CDN 或 API。
+
+## 发布到 GitHub Pages
+
+在仓库 Settings → Pages 中选择 **Deploy from a branch**，分支 **main**、目录 **/(root)**。`.nojekyll` 用于直接发布静态文件。
+
+## 范围
+
+这是一个轻量的陪伴式计时器。没有账号、排行榜、付费功能，也没有后端或数据采集。计时以设备系统时间为准。
