@@ -5,23 +5,6 @@ var KittyRoom = (() => {
   function rect(x,y,w,h,c){ctx.fillStyle=c;ctx.fillRect(x,y,w,h);}
   function pot(x,y,scale=1){ctx.save();ctx.translate(x,y);ctx.scale(scale,scale);rect(8,-33,4,38,C.leaf);rect(-3,-29,13,7,C.sage);rect(-7,-35,11,6,C.sage);rect(11,-43,14,7,C.leaf);rect(19,-49,9,6,C.leaf);rect(12,-16,14,6,C.sage);rect(0,0,24,5,C.dark);rect(2,5,20,22,'#ba7957');rect(6,27,12,4,C.dark);rect(4,6,4,17,'#d69a71');ctx.restore();}
   function book(x,y,w,h,c){rect(x,y,w,h,c);rect(x+2,y+3,w-4,2,'#ecdcbb');rect(x+2,y+h-5,w-4,2,'#ecdcbb');}
-  function cat(x,y,t){
-    const happy = Date.now() < happyUntil;
-    const breath = reduced.matches ? 0 : Math.floor(t/900)%2;
-    ctx.save();ctx.translate(x,y-breath);ctx.scale(3,3);
-    // Pixel sprite: solid, hand-placed blocks, including a tail that flicks.
-    const wag = !reduced.matches && Math.floor(t/750)%2 ? 2 : 0;
-    rect(29,24,12,5,C.outline);rect(38,15-wag,5,12+wag,C.outline);rect(39,16-wag,3,9+wag,C.cat);rect(28,25,11,3,C.cat);
-    rect(5,15,25,17,C.outline);rect(3,17,29,11,C.outline);rect(5,16,25,13,C.cat);rect(8,28,20,3,C.cat);rect(8,21,14,8,C.fur);
-    rect(3,0,7,13,C.outline);rect(23,0,7,13,C.outline);rect(6,2,3,8,C.cat);rect(24,2,3,8,C.cat);rect(6,5,3,4,'#d58b74');rect(24,5,3,4,'#d58b74');
-    rect(6,6,22,16,C.outline);rect(2,10,30,9,C.outline);rect(4,10,26,9,C.cat);rect(7,7,20,13,C.cat);rect(9,15,16,6,C.fur);
-    rect(14,7,3,5,'#bd7e42');rect(19,7,2,4,'#bd7e42');
-    const blink = happy || (!reduced.matches && Math.floor(t/150)%38===0);
-    rect(8,12,4,blink?1:3,C.outline);rect(23,12,4,blink?1:3,C.outline);rect(16,16,3,2,'#b16d5c');rect(17,18,1,2,C.outline);
-    rect(3,16,4,1,'#b77950');rect(27,16,5,1,'#b77950');rect(7,29,7,3,C.fur);rect(23,29,7,3,C.fur);
-    if(happy){const heart=(hx,hy)=>{rect(hx+2,hy,3,2,'#b96e58');rect(hx+7,hy,3,2,'#b96e58');rect(hx,hy+2,12,4,'#b96e58');rect(hx+2,hy+6,8,2,'#b96e58');rect(hx+4,hy+8,4,2,'#b96e58');};heart(-9,-13);heart(34,-7);}
-    ctx.restore();
-  }
   function draw(t){
     ctx.imageSmoothingEnabled=false;
     rect(0,0,576,360,C.wall);
@@ -54,11 +37,10 @@ var KittyRoom = (() => {
     // Pixel rug and cushion, shadow, cat.
     rect(215,282,179,8,'#b98b69');rect(196,290,218,30,'#b98b69');rect(210,320,190,10,'#b98b69');rect(223,330,163,5,'#b98b69');rect(215,291,179,29,'#cfaa82');rect(228,284,151,7,'#cfaa82');rect(226,320,157,7,'#cfaa82');
     rect(263,294,97,8,'#8b8b61');rect(254,301,116,16,'#8b8b61');rect(263,317,98,5,'#8b8b61');rect(260,299,104,13,'#a4a47a');
-    cat(267,207,t);
     // Tiny yarn ball and framed wall note.
     rect(174,283,19,16,'#b87459');rect(170,287,27,9,'#b87459');rect(175,285,3,12,'#d69879');rect(182,283,2,16,'#d69879');rect(192,294,20,2,'#b87459');rect(209,291,2,5,'#b87459');
     rect(277,101,40,46,'#a77952');rect(281,105,32,38,C.pale);rect(289,114,16,2,'#c5b48c');rect(286,121,20,2,'#c5b48c');rect(291,129,10,5,'#a5aa7c');
-    if(running){ctx.fillStyle=C.dark;ctx.font='11px monospace';ctx.fillText('z',380,205);ctx.fillText('z',390,192);}
+    if(running){rect(398,221,3,3,C.dark);rect(405,221,3,3,C.dark);rect(412,221,3,3,C.dark);}
   }
   function loop(t){if(t-previous>120){draw(t);previous=t;}requestAnimationFrame(loop);}
   return { init(el){canvas=el;ctx=canvas.getContext('2d');draw(0);requestAnimationFrame(loop);},setRunning(value){running=value;},pet(){happyUntil=Date.now()+2200;} };
